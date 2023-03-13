@@ -20,7 +20,8 @@ composer require fly-cms/async-log
 ````shell
 return [
     'enable' => true,
-    'listen'            => '0.0.0.0:8770',
+    'register_address' => 'text://127.0.0.1:8770',//client连接地址
+    'token' => '',// 连接校验密码
     "model_set" =>[
         'request_log' => \app\model\log\RequestLogModel::class,
         'user_log' => \app\admin\controller\log\UserLog::class,
@@ -32,5 +33,5 @@ return [
 使用
 send方法接受两个参数,key对应上面model_set里面的数组key,第二个参数是一个数组,需要写入mysql的数组数据
 ````shell
-      \FlyCms\AsyncLog\LogClient::send('request_log',[]);
+\FlyCms\AsyncLog\LogClient::send('request_log',[]);
 ````
