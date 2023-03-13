@@ -36,7 +36,7 @@ class LogClient
      */
     private static function tryInit()
     {
-        $log_address = config('app.log_address');
+        $log_address =  config('plugin.fly-cms.async-log.app.register_address');
         self::$connection = new AsyncTcpConnection($log_address);
         self::$connection->onConnect = function (){
             self::auth();//验证
@@ -46,7 +46,7 @@ class LogClient
             //清空临时缓存的数据
             if (self::$temp_cache){
                 foreach (self::$temp_cache as $k=>$item){
-                    self::send( $item['key'], $item['send_data']);
+                    self::$connection->send( $item['send_data']);
                     unset(self::$temp_cache[$k]);
                 }
             }
@@ -65,7 +65,7 @@ class LogClient
      * @return void
      */
     private static function auth(){
-        $token= config('app.log_token');
+        $token= config('plugin.fly-cms.async-log.app.token');
         self::send('auth',md5($token));
     }
 
