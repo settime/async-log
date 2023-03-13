@@ -1,0 +1,13 @@
+{
+  "name": "fly-cms/async-log",
+  "type": "library",
+  "license": "MIT",
+  "description": "Webman plugin fly-cms/async-log",
+  "require": {
+  },
+  "autoload": {
+    "psr-4": {
+      "FlyCms\\AsyncLog\\": "src"
+    }
+  }
+}
